@@ -9,9 +9,15 @@
             <div class="brand"></div>
         </div>
         <ul class="nav">
+            {{#if current_user}}
+            <li class="nav-item">
+                <a href="/" class="nav-link">{{current_user.name}}</a>
+            </li>
+            {{else}}
             <li class="nav-item">
                 <a href="/" class="nav-link">John Smith</a>
             </li>
+            {{/if}}
             <li class="nav-item">
                 <a href="/about" class="nav-link">About</a>
             </li>
@@ -37,15 +43,15 @@
         </ul>
     </nav>
     {{#if current_user}}
-    <button id="dropdown">Dropdown</button>
+    <button id="dropdown">Actions</button>
     <div class="nav-dropdown hide">
         <div class="nav-sub">
             <ul>
                 <li>
-                    <a href="">Add Project</a>
+                    <a href="/portfolio/create-portfolio">Add Project</a>
                 </li>
                 <li>
-                    <a href="">Edit Profile</a>
+                    <a href="/user/update-profile">Edit Profile</a>
                 </li>
                 <li>
                     <a href="">Change Avatar</a>

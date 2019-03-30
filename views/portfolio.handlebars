@@ -4,7 +4,28 @@
         My
         <span class="text-blue">Portfolio</span>
     </h1>
+    {{#each portfolio}}
+    <div class="projects">
+        <div class="item">
+            <a href="#">
+                <img src="/static/images/{{this.image}}" alt="" />
+            </a>
+            <p>{{this.description}}</p>
 
+            {{#if this.link_demo}}
+            <a href="#" class="btn-light"> <i class="fas fa-eye"></i> Project </a>
+            {{else}}
+            {{/if}}
+
+            {{#if this.link_github}}
+            <a href="#" class="btn-dark">
+                <i class="fab fa-github"></i> Github
+            </a>
+            {{else}}
+            {{/if}}
+        </div>
+    </div>
+    {{else}}
     <div class="projects">
         <div class="item">
             <a href="#">
@@ -43,4 +64,5 @@
             </a>
         </div>
     </div>
+    {{/each}}
 </main>

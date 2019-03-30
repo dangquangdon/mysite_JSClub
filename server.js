@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
+const methodOverrid = require('method-override');
 
 /*
  * Import routes
@@ -18,6 +19,7 @@ const session = require('express-session');
 const root = require('./routes/root');
 const auth = require('./routes/auth');
 const portfolio = require('./routes/portfolio');
+const user = require('./routes/user');
 
 const keys = require('./config/keys');
 
@@ -58,6 +60,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 /*
+ * Method override middleware
+ */
+app.use(methodOverrid('_method'));
+
+/*
  * connect to MongoDB URI
  */
 mongoose
@@ -89,6 +96,7 @@ app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use('/', root);
 app.use('/auth', auth);
 app.use('/portfolio', portfolio);
+app.use('/user', user);
 
 /*
  * Set port to 5000 if it's not defined in environment

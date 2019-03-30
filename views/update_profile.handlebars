@@ -4,39 +4,45 @@
         <span class="text-blue">profile</span>
     </h1>
 
-    <form class="form-box" action="" method="post">
+    <form class="form-box" action="/user/update-profile?_method=PUT" method="post">
+        <input type="hidden" name="_method" value="PUT">
         <div class="input-group">
             <label for="name" class="input-label"> Name</label>
-            <input name="name" type="text" class="input-field" required>
+            <input name="name" type="text" class="input-field" value="{{name}}" required>
         </div>
         <div class="input-group">
             <label for="email" class="input-label"> Email</label>
-            <input name="email" type="text" class="input-field" required>
+            <input name="email" type="text" class="input-field" value="{{email}}" required>
         </div>
         <div class="input-group">
             <label for="github_account" class="input-label"> Github account</label>
-            <input name="github_account" type="text" class="input-field" required>
+            <input name="github_account" type="text" class="input-field" value="{{github_account}}"
+                placeholder="Link to your github account" required>
         </div>
         <div class="input-group">
-            <label for="linkedin" class="input-label"> Linkedin</label>
-            <input name="linkedin" type="text" class="input-field" required>
+            <label for="linkedin" class="input-label"> LinkedIn</label>
+            <input name="linkedin" type="text" class="input-field" value="{{linkedin}}"
+                placeholder="Link to your LinkedIn profile" required>
         </div>
         <div class="input-group">
             <label for="facebook" class="input-label"> Facebook</label>
-            <input name="facebook" type="text" class="input-field" required>
+            <input name="facebook" type="text" class="input-field" value="{{facebook}}"
+                placeholder="Link to your Facebook profile">
         </div>
         <div class="input-group">
             <label for="twitter" class="input-label"> Twitter</label>
-            <input name="twitter" type="text" class="input-field" required>
+            <input name="twitter" type="text" class="input-field" value="{{twitter}}"
+                placeholder="Link to your Twitter account">
         </div>
         <div class="input-group">
             <label for="skills_description" class="input-label"> Describe your skillset</label>
-            <input name="skills_description" type="text" class="input-field" required>
+            <input name="skills_description" type="text" class="input-field" value="{{skills_description}}"
+                placeholder="Briefly describe your skillset" required>
         </div>
         <div class="input-group">
             <label for="skills" class="input-label"> List your skills</label>
             <input name="skills" type="text" class="input-field" placeholder="Separate each skill with a comma"
-                required>
+                value="{{skills}}" required>
         </div>
 
         <input type="submit" class="btn-dark" value="Update">
