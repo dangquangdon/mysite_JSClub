@@ -119,6 +119,45 @@
   }
 }
 
+// Dropdown menu
+#dropdown {
+  position: absolute;
+  left: 35px;
+  margin-top: 10px;
+}
+.nav-dropdown {
+  position: absolute;
+  top: 35px;
+  left: 35px;
+  overflow: hidden;
+  background-color: $darkblue;
+  a {
+    color: set-text-color($darkblue);
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+    &:hover {
+      text-decoration: underline;
+      background-color: $dark;
+    }
+  }
+
+  &.hide {
+    display: none;
+  }
+}
+
+.nav-sub {
+  padding: 20px;
+  ul {
+    padding: 0;
+    list-style: none;
+    a {
+      display: inline-block;
+    }
+  }
+}
+
 // Delay each nav item by 0.1s slide in
 @for $i from 1 through 4 {
   .nav-item:nth-child(#{$i}) {

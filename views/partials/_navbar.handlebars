@@ -36,4 +36,26 @@
             {{/if}}
         </ul>
     </nav>
+    {{#if current_user}}
+    <button id="dropdown">Dropdown</button>
+    <div class="nav-dropdown hide">
+        <div class="nav-sub">
+            <ul>
+                <li>
+                    <a href="">Add Project</a>
+                </li>
+                <li>
+                    <a href="">Edit Profile</a>
+                </li>
+                <li>
+                    <a href="">Change Avatar</a>
+                </li>
+                <li>
+                    <a href="">Add Education</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {{else}}
+    {{/if}}
 </header>

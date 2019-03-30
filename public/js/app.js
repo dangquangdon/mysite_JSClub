@@ -25,5 +25,19 @@ function toggleMenu() {
  */
 
 const this_year = new Date().getFullYear();
+const yearTag = document.getElementById('year');
+if (yearTag) {
+  yearTag.innerHTML = this_year;
+}
 
-document.getElementById('year').innerHTML = this_year;
+/*
+ * Dropdown button when user logged in
+ */
+const dropdown = document.getElementById('dropdown');
+const navDropdown = document.querySelector('.nav-dropdown');
+
+dropdown.addEventListener('click', openDropdown);
+
+function openDropdown() {
+  navDropdown.classList.toggle('hide');
+}

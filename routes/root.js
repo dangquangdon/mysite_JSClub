@@ -22,16 +22,6 @@ router.get('/about', (req, res) => {
 });
 
 /*
- * Portfolio page
- * /portfolio
- * Public
- * Get
- */
-router.get('/portfolio', (req, res) => {
-  res.render('portfolio');
-});
-
-/*
  * Contact page
  * /contact
  * Public

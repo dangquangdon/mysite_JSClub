@@ -17,6 +17,7 @@ const session = require('express-session');
  */
 const root = require('./routes/root');
 const auth = require('./routes/auth');
+const portfolio = require('./routes/portfolio');
 
 const keys = require('./config/keys');
 
@@ -80,12 +81,14 @@ app.use((req, res, next) => {
 
 /*
  * Set static folder path
- * Set root route
- * Set authentication route
+ * Set root routes
+ * Set authentication routes
+ * Set portfolio routes
  */
 app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use('/', root);
 app.use('/auth', auth);
+app.use('/portfolio', portfolio);
 
 /*
  * Set port to 5000 if it's not defined in environment
