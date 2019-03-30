@@ -23,6 +23,16 @@
             </a>
             {{else}}
             {{/if}}
+
+            {{#if ../current_user}}
+            <a href="/portfolio/edit/{{this._id}}" class="btn-dark">
+                <i class="fas fa-edit"></i> Edit
+            </a>
+            <a href="#" class="btn-dark">
+                <i class="fas fa-trash-alt"></i> Delete
+            </a>
+            {{else}}
+            {{/if}}
         </div>
     </div>
     {{else}}

@@ -25,10 +25,9 @@ router.get('/', (req, res) => {
       .sort({ date: 'desc' })
       .then(portfolio => {
         if (!portfolio[0]) {
-          console.log('no portfolio');
           res.render('portfolio');
         } else {
-          console.log(portfolio);
+          console.log(res.locals.current_user);
           res.render('portfolio', {
             portfolio: portfolio
           });
@@ -66,6 +65,64 @@ router.post('/create-portfolio', isAuthorized, (req, res) => {
       res.redirect('/portfolio');
     })
     .catch(err => console.log(err));
+});
+
+/*
+ * Edit a project
+ * /portfolio/edit/:id
+ * Private
+ * GET
+ */
+
+/*
+    Go to edit form to edit an existing project.
+    But first have to check if the current user
+    is the owner of the project.
+    The same handlebars form as creating project
+    can be used.
+ */
+router.get('/edit/:id', isAuthorized, (req, res) => {
+  Portfolio.findOne({ _id: req.params.id })
+    .then(project => {
+      if (project.user != req.user.id) {
+        req.flash('error_message', 'Not authorized');
+        res.redirect('/portfolio');
+      } else {
+        res.render('create_portfolio', { project: project });
+      }
+    })
+    .catch(err => console.log(err));
+});
+
+/*
+  PUT - Edit project
+*/
+router.put('/edit/:id', isAuthorized, (req, res) => {
+  Portfolio.findOne({ _id: req.params.id }).then(project => {
+    // new values
+    project.title = req.body.title;
+    project.link = req.body.link;
+    project.description = req.body.description;
+
+    project.save().then(project => {
+      req.flash('success_message', 'Updated');
+      res.redirect('/portfolio');
+    });
+  });
+});
+
+/*
+ * Edit a project
+ * /portfolio/delete/:id
+ * Private
+ * DELETE - Delete project by its id
+ */
+
+router.delete('/delete/:id', isAuthorized, (req, res) => {
+  Portfolio.findOneAndDelete({ _id: req.params.id }).then(() => {
+    req.flash('success_message', 'Project is deleted');
+    res.redirect('/portfolio');
+  });
 });
 
 module.exports = router;
