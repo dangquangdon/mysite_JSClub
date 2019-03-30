@@ -7,6 +7,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const flash = require('connect-flash');
+const session = require('express-session');
 
 /*
  * Import routes
@@ -23,8 +25,11 @@ const app = express();
 
 /*
  * Initialize local strategy
+ * Passport middlewares
  */
 require('./config/passport')(passport);
+app.use(passport.initialize());
+app.use(passport.session());
 
 /*
  * Handlebars middleware
@@ -39,6 +44,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 /*
+ * Express Session middleware
+ * Connect Flash middleware
+ */
+app.use(
+  session({
+    secret: keys.secretKey,
+    resave: true,
+    saveUninitialized: true
+  })
+);
+app.use(flash());
+
+/*
  * connect to MongoDB URI
  */
 mongoose
@@ -47,6 +65,18 @@ mongoose
     console.log('MongoDB is connected');
   })
   .catch(err => console.log(err));
+
+/*
+ * Custom middleware
+ * to set global variables
+ */
+app.use((req, res, next) => {
+  res.locals.success_message = req.flash('success_message');
+  res.locals.error_message = req.flash('error_message');
+  res.locals.errors = req.flash('errors');
+  res.locals.current_user = req.user || null;
+  next();
+});
 
 /*
  * Set static folder path
