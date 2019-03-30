@@ -1,4 +1,25 @@
 <main id="home">
+    {{#if current_user}}
+    <h2 class="small-heading">Hello, I’m</h2>
+    <h1 class="big-heading">
+        I’m
+        <span class="text-blue">{{current_user.name}}</span>
+    </h1>
+    <div class="social-icons">
+        <a href="">
+            <i class="fab fa-facebook fa-2x"></i>
+        </a>
+        <a href="">
+            <i class="fab fa-linkedin fa-2x"></i>
+        </a>
+        <a href="">
+            <i class="fab fa-twitter fa-2x"></i>
+        </a>
+        <a href="">
+            <i class="fab fa-github fa-2x"></i>
+        </a>
+    </div>
+    {{else}}
     <h2 class="small-heading">Hello, I’m</h2>
     <h1 class="big-heading">
         John
@@ -18,4 +39,6 @@
             <i class="fab fa-github fa-2x"></i>
         </a>
     </div>
+    {{/if}}
+
 </main>

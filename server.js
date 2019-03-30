@@ -24,6 +24,19 @@ const keys = require('./config/keys');
 const app = express();
 
 /*
+ * Express Session middleware
+ * Connect Flash middleware
+ */
+app.use(
+  session({
+    secret: keys.secretKey,
+    resave: true,
+    saveUninitialized: true
+  })
+);
+app.use(flash());
+
+/*
  * Initialize local strategy
  * Passport middlewares
  */
@@ -42,19 +55,6 @@ app.set('view engine', 'handlebars');
  */
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
-/*
- * Express Session middleware
- * Connect Flash middleware
- */
-app.use(
-  session({
-    secret: keys.secretKey,
-    resave: true,
-    saveUninitialized: true
-  })
-);
-app.use(flash());
 
 /*
  * connect to MongoDB URI

@@ -4,19 +4,19 @@
         <span class="text-blue">Up</span>
     </h1>
 
-    <form class="form-box" action="" method="post">
+    <form class="form-box" action="/auth/register" method="post">
         <div class="input-group">
             <label for="name" class="input-label"> Name</label>
-            <input name="name" type="text" class="input-field" required>
+            <input name="name" type="text" class="input-field" value="{{name}}" required>
         </div>
         <div class="input-group">
             <label for="handle" class="input-label"> Handle</label>
-            <input name="handle" type="text" class="input-field" required>
+            <input name="handle" type="text" class="input-field" value="{{handle}}" required>
         </div>
 
         <div class="input-group">
             <label for="email" class="input-label"> Email</label>
-            <input name="email" type="text" class="input-field" required>
+            <input name="email" type="text" class="input-field" value="{{email}}" required>
         </div>
         <div class="input-group">
             <label for="password" class="input-label"> Password</label>

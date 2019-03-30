@@ -1,0 +1,36 @@
+%alert {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 5vh;
+  width: 80%;
+  padding: 5px 20px;
+  display: block;
+  border-radius: 4px;
+
+  p {
+    color: #fff;
+  }
+}
+
+//----- Success
+.alert-success {
+  background: #75aa61;
+  @extend %alert;
+
+  &:before {
+    background-color: #98bf89;
+    background-position: -47px 7px;
+  }
+}
+
+//----- Error
+.alert-error {
+  background: #ae6872;
+  @extend %alert;
+
+  &:before {
+    background-color: #98bf89;
+    background-position: -47px 7px;
+  }
+}
