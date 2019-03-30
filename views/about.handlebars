@@ -3,7 +3,50 @@
         About
         <span class="text-blue">Me</span>
     </h1>
-    {{#if current_user}}
+    {{#if handle_user}}
+    <div class="about-info">
+        <img src="/static/images/{{handle_user.avatar}}" alt="avatar image" class="bio-img" />
+        <div class="bio">
+            <h3 class="text-blue">
+                BIO
+            </h3>
+            <p>
+                {{handle_user.education_description}}
+            </p>
+            <p class="">
+                {{handle_user.skills_description}}
+            </p>
+        </div>
+        <div class="col edu">
+            <h3>Education</h3>
+            {{#each handle_user.education}}
+            <h5>{{this.school}}</h5>
+            <p>{{this.degree}}</p>
+            <small>{{this.year}}</small>
+            <hr>
+            {{/each}}
+        </div>
+
+        <div class="col workexp">
+            <h3>Experience</h3>
+            {{#each handle_user.workexp}}
+            <h5>{{this.company}}</h5>
+            <p class="text-dark">{{this.title}}</p>
+            <p>{{this.year}}</p>
+            <hr>
+            {{/each}}
+        </div>
+
+        <div class="col skills">
+            <h3>Skills</h3>
+            <ul>
+                {{#each handle_user.skills}}
+                <li>{{this}}</li>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+    {{else if current_user}}
     <div class="about-info">
         <img src="/static/images/{{current_user.avatar}}" alt="avatar image" class="bio-img" />
         <div class="bio">
@@ -31,8 +74,9 @@
             <h3>Experience</h3>
             {{#each current_user.workexp}}
             <h5>{{this.company}}</h5>
-            <p class="text-blue">{{this.title}}</p>
+            <p class="text-dark">{{this.title}}</p>
             <p>{{this.year}}</p>
+            <hr>
             {{/each}}
         </div>
 

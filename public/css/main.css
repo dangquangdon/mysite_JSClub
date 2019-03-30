@@ -196,6 +196,9 @@ header {
 .text-blue {
   color: #5eb1bf; }
 
+.text-dark {
+  color: #656256; }
+
 main {
   padding: 2rem;
   height: 100%; }
