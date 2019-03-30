@@ -19,3 +19,11 @@ function toggleMenu() {
     item.classList.toggle('show');
   });
 }
+
+/*
+ * Current year in footer
+ */
+
+const this_year = new Date().getFullYear();
+
+document.getElementById('year').innerHTML = this_year;
