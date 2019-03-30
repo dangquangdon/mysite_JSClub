@@ -6,6 +6,7 @@ const exphbs = require('express-handlebars');
 const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 /*
  * Import routes
@@ -19,6 +20,11 @@ const keys = require('./config/keys');
 
 // Initialize app
 const app = express();
+
+/*
+ * Initialize local strategy
+ */
+require('./config/passport')(passport);
 
 /*
  * Handlebars middleware
