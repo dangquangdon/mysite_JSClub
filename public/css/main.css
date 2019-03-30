@@ -55,7 +55,7 @@
     .main-nav .nav-brand .brand {
       width: 250px;
       height: 250px;
-      background: url("../images/me.jpg");
+      background: url("../images/me2.png");
       background-size: cover;
       border-radius: 50%;
       border: solid 3px #5eb1bf; }
@@ -158,6 +158,53 @@ main {
       margin-top: 20vh; }
   main#contact h1 {
     margin-top: 20vh; }
+  main#login {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+    main#login input.btn-dark {
+      display: block;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto; }
+
+.form-box {
+  background: #eff6ee;
+  position: relative;
+  width: 600px;
+  padding: 20px 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.1), 0 6px 10px 5px rgba(0, 0, 0, 0.1), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.1s ease-in-out; }
+  .form-box:hover {
+    transform: translate(0px, 10px); }
+
+.input-group {
+  position: relative;
+  padding: 20px;
+  margin: 10px 60px 10px 10px;
+  transition: opacity 0.3s ease-in-out;
+  margin-left: auto;
+  margin-right: auto; }
+  .input-group input {
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    outline: 0;
+    background: transparent;
+    box-shadow: none;
+    border-bottom: 1px solid #656256; }
+  .input-group .input-label {
+    pointer-events: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: 0.2s ease-in-out; }
 
 .about-info {
   display: grid;
@@ -288,10 +335,14 @@ main {
     grid-template-areas: 'bio-image' 'bio' 'edu' 'workexp' 'skills';
     grid-template-columns: 1fr; }
   .projects {
-    grid-template-columns: repeat(2, 1fr); } }
+    grid-template-columns: repeat(2, 1fr); }
+  .form-box {
+    width: 80%; } }
 
 @media screen and (max-width: 500px) {
   main#home h1 {
     margin-top: 20vh; }
+  main#login .form-box {
+    width: 80%; }
   .projects {
     grid-template-columns: 1fr; } }
