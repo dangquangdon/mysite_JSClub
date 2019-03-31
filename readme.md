@@ -30,6 +30,22 @@ Check the [demo](https://jsclub-mysite.herokuapp.com/)
 
 In localhost, the server is started in port 5000
 
+### Using Docker
+
+- `docker build -t mysite2019`
+  you can replace `mysite2019` with your preferred name
+
+- `docker run -it -p 8000:5000 mysite2019`
+  this will run the container in your port 8000 (you can change this), the app runs in the container from the port 5000
+
+**To run in the background**
+
+-`docker run -d -p 8000:5000 mysite2019`
+
+TODO:
+
+- Add docker compose
+
 ## How it works
 
 For user: - create account - login and create/edit profile - create/add/delete education records - create/add/delete work experience records - create/add/delete projects in portfolio - change avatar image and project thumbnail image
