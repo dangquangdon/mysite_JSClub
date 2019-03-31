@@ -125,4 +125,38 @@ router.delete('/delete/:id', isAuthorized, (req, res) => {
   });
 });
 
+/*
+ * Portfolio page by handle
+ * /portfolio/:handle
+ * Public
+ * Get
+ */
+router.get('/:handle', (req, res) => {
+  User.findOne({ handle: req.params.handle })
+    .then(user => {
+      if (user) {
+        Portfolio.find({ user: user._id })
+          .sort({ date: 'desc' })
+          .then(portfolio => {
+            if (!portfolio[0]) {
+              res.render('portfolio', {
+                handle_user: user,
+                portfolio: []
+              });
+            } else {
+              res.render('portfolio', {
+                handle_user: user,
+                portfolio: portfolio
+              });
+            }
+          })
+          .catch(err => console.log(err));
+      } else {
+        req.flash('error_message', 'This user does not exists');
+        res.redirect('/');
+      }
+    })
+    .catch(err => console.log(err));
+});
+
 module.exports = router;

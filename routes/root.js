@@ -23,24 +23,6 @@ router.get('/about', (req, res) => {
 });
 
 /*
- * About page of a user
- * /:handle/about
- * Public
- * Get
- */
-router.get('/:handle/about', (req, res) => {
-  User.findOne({ handle: req.params.handle })
-    .then(user => {
-      if (user) {
-        res.render('about', { handle_user: user });
-      } else {
-        req.flash('error_message', 'This user does not exist');
-        res.redirect('/about');
-      }
-    })
-    .catch(err => console.log(err));
-});
-/*
  * Contact page
  * /contact
  * Public
@@ -51,8 +33,60 @@ router.get('/contact', (req, res) => {
 });
 
 /*
-      TO DO:
-        * Show user's information by hanle
-        * Home, Portfolio, Contact
+ * Landing page of a user
+ * /:handle
+ * Public
+ * Get
  */
+router.get('/home/:handle', (req, res) => {
+  User.findOne({ handle: req.params.handle })
+    .then(user => {
+      if (user) {
+        res.render('home', { nofooter: true, handle_user: user });
+      } else {
+        req.flash('error_message', 'This user does not exist');
+        res.redirect('/');
+      }
+    })
+    .catch(err => console.log(err));
+});
+
+/*
+ * About page of a user
+ * /:handle/about
+ * Public
+ * Get
+ */
+router.get('/about/:handle', (req, res) => {
+  User.findOne({ handle: req.params.handle })
+    .then(user => {
+      if (user) {
+        res.render('about', { handle_user: user });
+      } else {
+        req.flash('error_message', 'This user does not exist');
+        res.redirect('/');
+      }
+    })
+    .catch(err => console.log(err));
+});
+
+/*
+ * Contact page
+ * /contact
+ * Public
+ * Get
+ */
+router.get('/contact/:handle', (req, res) => {
+  User.findOne({ handle: req.params.handle })
+    .then(user => {
+      if (user) {
+        res.render('contact', { handle_user: user });
+      } else {
+        req.flash('error_message', 'This user does not exist');
+        res.redirect('/');
+      }
+    })
+    .catch(err => console.log(err));
+});
+
 module.exports = router;

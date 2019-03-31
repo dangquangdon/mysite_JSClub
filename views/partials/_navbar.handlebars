@@ -9,15 +9,23 @@
             <div class="brand"></div>
         </div>
         <ul class="nav">
-            {{#if current_user}}
+            {{#if handle_user}}
+            <li class="nav-item">
+                <a href="/home/{{handle_user.handle}}" class="nav-link">{{handle_user.name}}</a>
+            </li>
+            <li class="nav-item">
+                <a href="/about/{{handle_user.handle}}" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+                <a href="/portfolio/{{handle_user.handle}}" class="nav-link">Portfolio</a>
+            </li>
+            <li class="nav-item">
+                <a href="/contact/{{handle_user.handle}}" class="nav-link">Contact</a>
+            </li>
+            {{else if current_user}}
             <li class="nav-item">
                 <a href="/" class="nav-link">{{current_user.name}}</a>
             </li>
-            {{else}}
-            <li class="nav-item">
-                <a href="/" class="nav-link">John Smith</a>
-            </li>
-            {{/if}}
             <li class="nav-item">
                 <a href="/about" class="nav-link">About</a>
             </li>
@@ -27,7 +35,22 @@
             <li class="nav-item">
                 <a href="/contact" class="nav-link">Contact</a>
             </li>
+            {{else}}
+            <li class="nav-item">
+                <a href="/" class="nav-link">John Smith</a>
+            </li>
+            <li class="nav-item">
+                <a href="/about" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+                <a href="/portfolio" class="nav-link">Portfolio</a>
+            </li>
+            <li class="nav-item">
+                <a href="/contact" class="nav-link">Contact</a>
+            </li>
+            {{/if}}
             <br>
+            {{!-- Only logged in user can see these options --}}
             {{#if current_user}}
             <li class="nav-item">
                 <a href="/auth/logout" class="nav-link">Logout</a>
@@ -42,11 +65,15 @@
             {{/if}}
         </ul>
     </nav>
+    {{!-- Only logged in user can see the dropdown --}}
     {{#if current_user}}
     <button id="dropdown">Actions</button>
     <div class="nav-dropdown hide">
         <div class="nav-sub">
             <ul>
+                <li>
+                    <a href="/">Back to Home</a>
+                </li>
                 <li>
                     <a href="/portfolio/create-portfolio">Add Project</a>
                 </li>

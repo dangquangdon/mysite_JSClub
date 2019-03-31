@@ -3,7 +3,23 @@
         Contact
         <span class="text-blue">me</span>
     </h1>
-
+    {{#if handle_user}}
+    <div class="boxes">
+        <div><span class="text-blue">Email:</span> {{handle_user.email}}</div>
+        <div><span class="text-blue">Phone:</span> 222-222-2222</div>
+        <div>
+            <span class="text-blue">Address: </span> Unknown str. Helsinki
+        </div>
+    </div>
+    {{else if current_user}}
+    <div class="boxes">
+        <div><span class="text-blue">Email:</span> {{current_user.email}}</div>
+        <div><span class="text-blue">Phone:</span> 222-222-2222</div>
+        <div>
+            <span class="text-blue">Address: </span> Unknown str. Helsinki
+        </div>
+    </div>
+    {{else}}
     <div class="boxes">
         <div><span class="text-blue">Email:</span> john@doe.com</div>
         <div><span class="text-blue">Phone:</span> 222-222-2222</div>
@@ -11,4 +27,5 @@
             <span class="text-blue">Address: </span> Unknown str. Helsinki
         </div>
     </div>
+    {{/if}}
 </main>
