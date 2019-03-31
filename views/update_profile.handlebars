@@ -7,8 +7,12 @@
     <form class="form-box" action="/user/update-profile?_method=PUT" method="post">
         <input type="hidden" name="_method" value="PUT">
         <div class="input-group">
-            <label for="name" class="input-label"> Name</label>
-            <input name="name" type="text" class="input-field" value="{{name}}" required>
+            <label for="first_name" class="input-label"> First name</label>
+            <input name="first_name" type="text" class="input-field" value="{{first_name}}" required>
+        </div>
+        <div class="input-group">
+            <label for="last_name" class="input-label"> First name</label>
+            <input name="last_name" type="text" class="input-field" value="{{last_name}}" required>
         </div>
         <div class="input-group">
             <label for="email" class="input-label"> Email</label>
@@ -35,16 +39,24 @@
                 placeholder="Link to your Twitter account">
         </div>
         <div class="input-group">
-            <label for="skills_description" class="input-label"> Describe your skillset</label>
-            <input name="skills_description" type="text" class="input-field" value="{{skills_description}}"
-                placeholder="Briefly describe your skillset" required>
+            <label for="skills_description" class="input-label"> Describe yourself </label>
+            <textarea name="self_description" type="text" placeholder="Briefly describe yourself" required>
+                {{self_description}}
+                </textarea>
         </div>
         <div class="input-group">
             <label for="skills" class="input-label"> List your skills</label>
             <input name="skills" type="text" class="input-field" placeholder="Separate each skill with a comma"
                 value="{{skills}}" required>
         </div>
-
+        <div class="input-group">
+            <label for="phone" class="input-label"> Phone number</label>
+            <input name="phone" type="text" class="input-field" value="{{phone}}" placeholder="Your phone number">
+        </div>
+        <div class="input-group">
+            <label for="address" class="input-label"> Address</label>
+            <input name="address" type="text" class="input-field" value="{{address}}" placeholder="Your address">
+        </div>
         <input type="submit" class="btn-dark" value="Update">
     </form>
 </main>

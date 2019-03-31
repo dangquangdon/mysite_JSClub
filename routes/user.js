@@ -19,14 +19,17 @@ const { checkFileType } = require('../helpers/fileUpload');
 router.get('/update-profile', isAuthorized, (req, res) => {
   user_skills = req.user.skills.join();
   res.render('update_profile', {
-    name: req.user.name,
+    first_name: req.user.first_name,
+    last_name: req.user.last_name,
     email: req.user.email,
     skills: user_skills,
-    skills_description: req.user.skills_description,
+    self_description: req.user.self_description,
     github_account: req.user.github_account,
     facebook: req.user.facebook,
     twitter: req.user.twitter,
-    linkedin: req.user.linkedin
+    linkedin: req.user.linkedin,
+    phone: req.user.phone,
+    address: req.user.address
   });
 });
 
@@ -46,13 +49,16 @@ router.put('/update-profile', isAuthorized, (req, res) => {
         user.skills = req.body.skills.split(',');
       }
 
-      user.name = req.body.name;
+      user.first_name = req.body.first_name;
+      user.last_name = req.body.last_name;
       user.email = req.body.email;
-      user.skills_description = req.body.skills_description;
+      user.self_description = req.body.self_description;
       user.github_account = req.body.github_account;
       user.linkedin = req.body.linkedin;
       user.facebook = req.body.facebook;
       user.twitter = req.body.twitter;
+      user.phone = req.body.phone;
+      user.address = req.body.address;
 
       // save to database
       user

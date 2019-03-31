@@ -6,18 +6,30 @@
     {{#if handle_user}}
     <div class="boxes">
         <div><span class="text-blue">Email:</span> {{handle_user.email}}</div>
-        <div><span class="text-blue">Phone:</span> 222-222-2222</div>
+        {{#if handle_user.phone}}
+        <div><span class="text-blue">Phone:</span> {{handle_user.phone}}</div>
+        {{else}}
+        {{/if}}
+        {{#if handle_user.address}}
         <div>
-            <span class="text-blue">Address: </span> Unknown str. Helsinki
+            <span class="text-blue">Address: </span> {{handle_user.address}}
         </div>
+        {{else}}
+        {{/if}}
     </div>
     {{else if current_user}}
     <div class="boxes">
         <div><span class="text-blue">Email:</span> {{current_user.email}}</div>
-        <div><span class="text-blue">Phone:</span> 222-222-2222</div>
+        {{#if current_user.phone}}
+        <div><span class="text-blue">Phone:</span> {{current_user.phone}}</div>
+        {{else}}
+        {{/if}}
+        {{#if current_user.address}}
         <div>
-            <span class="text-blue">Address: </span> Unknown str. Helsinki
+            <span class="text-blue">Address: </span> {{current_user.address}}
         </div>
+        {{else}}
+        {{/if}}
     </div>
     {{else}}
     <div class="boxes">

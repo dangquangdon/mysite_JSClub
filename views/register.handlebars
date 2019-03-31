@@ -6,8 +6,12 @@
 
     <form class="form-box" action="/auth/register" method="post">
         <div class="input-group">
-            <label for="name" class="input-label"> Name</label>
-            <input name="name" type="text" class="input-field" value="{{name}}" required>
+            <label for="first_name" class="input-label"> First name</label>
+            <input name="first_name" type="text" class="input-field" value="{{first_name}}" required>
+        </div>
+        <div class="input-group">
+            <label for="last_name" class="input-label"> Last name</label>
+            <input name="last_name" type="text" class="input-field" value="{{last_name}}" required>
         </div>
         <div class="input-group">
             <label for="handle" class="input-label"> Handle</label>

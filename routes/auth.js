@@ -95,7 +95,8 @@ router.post('/register', (req, res) => {
   if (errors.length > 0) {
     res.render('register', {
       errors: errors,
-      name: req.body.name,
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
       handle: req.body.handle,
       email: req.body.email
     });
@@ -105,7 +106,8 @@ router.post('/register', (req, res) => {
     const hashed_password = bcrypt.hashSync(req.body.password, salt);
 
     const new_user = new User({
-      name: req.body.name,
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
       handle: req.body.handle,
       email: req.body.email,
       password: hashed_password

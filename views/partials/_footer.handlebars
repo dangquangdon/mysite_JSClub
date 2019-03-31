@@ -4,14 +4,14 @@
         <li><a href="{{handle_user.linkedin}}" class="social linkedin">LinkedIn</a></li>
         <li><a href="{{handle_user.github_account}}" class="social github">Github</a></li>
     </ul>
-    <p class="copyright">Copyright <span id="year"></span>, {{handle_user.name}}</p>
+    <p class="copyright">Copyright <span id="year"></span>, {{handle_user.first_name}} {{handle_user.last_name}}</p>
 
     {{else if current_user}}
     <ul>
         <li><a href="{{current_user.linkedin}}" class="social linkedin">LinkedIn</a></li>
         <li><a href="{{current_user.github_account}}" class="social github">Github</a></li>
     </ul>
-    <p class="copyright">Copyright <span id="year"></span>, {{current_user.name}}</p>
+    <p class="copyright">Copyright <span id="year"></span>, {{current_user.first_name}} {{current_user.last_name}}</p>
 
     {{else}}
     <ul>

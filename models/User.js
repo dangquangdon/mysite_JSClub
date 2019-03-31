@@ -3,7 +3,11 @@ const Schema = mongoose.Schema;
 
 // User Schema
 const UserSchema = new Schema({
-  name: {
+  first_name: {
+    type: String,
+    required: true
+  },
+  last_name: {
     type: String,
     required: true
   },
@@ -34,7 +38,7 @@ const UserSchema = new Schema({
       }
     }
   ],
-  education_description: {
+  self_description: {
     type: String
   },
   workexp: [
@@ -53,9 +57,7 @@ const UserSchema = new Schema({
   skills: {
     type: [String]
   },
-  skills_description: {
-    type: String
-  },
+
   github_account: {
     type: String
   },
@@ -71,6 +73,12 @@ const UserSchema = new Schema({
   avatar: {
     type: String,
     default: 'me.png'
+  },
+  phone: {
+    type: String
+  },
+  address: {
+    type: String
   }
 });
 
