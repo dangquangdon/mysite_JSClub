@@ -2,6 +2,8 @@
 
 This project is a mini full-stack MVC used for learning purposes in [The Shortcut](https://theshortcut.org) JavaScript Club.
 
+Check the [demo](https://jsclub-mysite.herokuapp.com/)
+
 **Technologies used** - [NodeJS](https://nodejs.org/en/) - [ExpressJS](https://expressjs.com/) - [MongoDB](https://www.mongodb.com/) hosted by [Mlab](https://mlab.com/) - [Express-Handlebars](https://www.npmjs.com/package/express-handlebars) as view engine
 
 ## Installation
