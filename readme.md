@@ -22,6 +22,13 @@ Check the [demo](https://jsclub-mysite.herokuapp.com/)
 
 In localhost, the server is started in port 5000
 
+## How it works
+
+For user: - create account - login and create/edit profile - create/add/delete education records - create/add/delete work experience records - create/add/delete projects in portfolio - change avatar image and project thumbnail image
+For visitor: - can see everyone's profile using handle name
+
+    `root.domain/home/:handle_name`
+
 ## How to follow
 
 Follow the commits of this repo to re-build this project.
