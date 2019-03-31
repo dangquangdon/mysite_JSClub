@@ -5,7 +5,8 @@
         <span class="text-blue">project</span>
     </h1>
 
-    <form class="form-box" action="" method="post">
+    <form class="form-box" action="/portfolio/edit/{{project._id}}?_method=PUT" method="post">
+        <input type="hidden" name="_method" value="PUT">
         <div class="input-group">
             <label for="title" class="input-label"> Title</label>
             <input name="title" type="text" class="input-field" value="{{project.title}}" required>
@@ -33,7 +34,7 @@
         <span class="text-blue">project</span>
     </h1>
 
-    <form class="form-box" action="" method="post">
+    <form class="form-box" action="/portfolio/create-portfolio" method="post">
         <div class="input-group">
             <label for="title" class="input-label"> Title</label>
             <input name="title" type="text" class="input-field" required>

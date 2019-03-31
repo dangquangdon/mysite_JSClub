@@ -3,7 +3,25 @@
         Add
         <span class="text-blue">education</span>
     </h1>
+    {{#if education}}
+    <form class="form-box" action="/user/edit-education/{{education.id}}?_method=PUT" method="post">
+        <input type="hidden" name="_method" value="PUT">
+        <div class="input-group">
+            <label for="school" class="input-label"> School name</label>
+            <input name="school" type="text" class="input-field" value="{{education.school}}" required>
+        </div>
+        <div class="input-group">
+            <label for="degree" class="input-label"> Degree</label>
+            <input name="degree" type="text" class="input-field" value="{{education.degree}}" required>
+        </div>
 
+        <div class="input-group">
+            <label for="year" class="input-label"> From year to year</label>
+            <input name="year" type="text" class="input-field" value="{{education.year}}" required>
+        </div>
+        <input type="submit" class="btn-dark" value="Update">
+    </form>
+    {{else}}
     <form class="form-box" action="/user/update-education" method="post">
         <div class="input-group">
             <label for="school" class="input-label"> School name</label>
@@ -13,15 +31,11 @@
             <label for="degree" class="input-label"> Degree</label>
             <input name="degree" type="text" class="input-field" required>
         </div>
-
-        <div class="input-group">
-            <label for="description" class="input-label"> Description</label>
-            <input name="description" type="text" class="input-field" required>
-        </div>
         <div class="input-group">
             <label for="year" class="input-label"> From year to year</label>
             <input name="year" type="text" class="input-field" required>
         </div>
         <input type="submit" class="btn-dark" value="Update">
     </form>
+    {{/if}}
 </main>

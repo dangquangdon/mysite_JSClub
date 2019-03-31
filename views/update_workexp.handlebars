@@ -1,9 +1,30 @@
 <main id="login">
+    {{#if workexp}}
+    <h1 class="big-heading">
+        Edit
+        <span class="text-blue">Experience</span>
+    </h1>
+    <form class="form-box" action="/user/edit-workexp/{{workexp.id}}?_method=PUT" method="post">
+        <input type="hidden" name="_method" value="PUT">
+        <div class="input-group">
+            <label for="company" class="input-label"> company name</label>
+            <input name="company" type="text" class="input-field" value="{{workexp.company}}" required>
+        </div>
+        <div class="input-group">
+            <label for="title" class="input-label"> title</label>
+            <input name="title" type="text" class="input-field" value="{{workexp.title}}" required>
+        </div>
+        <div class="input-group">
+            <label for="year" class="input-label"> From year to year</label>
+            <input name="year" type="text" class="input-field" value="{{workexp.year}}" required>
+        </div>
+        <input type="submit" class="btn-dark" value="Update">
+    </form>
+    {{else}}
     <h1 class="big-heading">
         Add
         <span class="text-blue">Experience</span>
     </h1>
-
     <form class="form-box" action="/user/update-workexp" method="post">
         <div class="input-group">
             <label for="company" class="input-label"> company name</label>
@@ -19,4 +40,5 @@
         </div>
         <input type="submit" class="btn-dark" value="Update">
     </form>
+    {{/if}}
 </main>

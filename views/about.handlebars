@@ -66,6 +66,18 @@
             <h5>{{this.school}}</h5>
             <p>{{this.degree}}</p>
             <small>{{this.year}}</small>
+            <div>
+                <a href="/user/edit-education/{{this.id}}">
+                    <i class="fas fa-edit"></i> Edit
+                </a>
+                <form action="/user/delete-education/{{this.id}}?_method=DELETE" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </button>
+                </form>
+            </div>
+
             <hr>
             {{/each}}
         </div>
@@ -76,6 +88,17 @@
             <h5>{{this.company}}</h5>
             <p class="text-dark">{{this.title}}</p>
             <p>{{this.year}}</p>
+            <div>
+                <a href="/user/edit-workexp/{{this.id}}">
+                    <i class="fas fa-edit"></i> Edit
+                </a>
+                <form action="/user/delete-workexp/{{this.id}}?_method=DELETE" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </button>
+                </form>
+            </div>
             <hr>
             {{/each}}
         </div>

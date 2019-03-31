@@ -64,21 +64,17 @@ router.put('/update-profile', isAuthorized, (req, res) => {
 });
 
 /*
- * Add education
+ * Education
  * /user/update-education
  * Private
  * GET
  */
 
 router.get('/update-education', isAuthorized, (req, res) => {
-  User.findById(req.user._id)
-    .then(user => {
-      res.render('update_education', { id: user._id });
-    })
-    .catch(err => console.log(err));
+  res.render('update_education');
 });
 
-// POST - Add/Update education form
+// POST - Add education form
 router.post('/update-education', isAuthorized, (req, res) => {
   User.findById(req.user._id)
     .then(user => {
@@ -89,7 +85,6 @@ router.post('/update-education', isAuthorized, (req, res) => {
       };
 
       user.education.unshift(school);
-      user.education_description = req.body.education_description;
 
       user
         .save()
@@ -98,6 +93,60 @@ router.post('/update-education', isAuthorized, (req, res) => {
           res.redirect('/');
         })
         .catch(err => console.log(err));
+    })
+    .catch(err => console.log(err));
+});
+
+// GET - Get education by id
+router.get('/edit-education/:id', isAuthorized, (req, res) => {
+  User.findById(req.user.id)
+    .then(user => {
+      const index = user.education.map(item => item.id).indexOf(req.params.id);
+      if (index > -1) {
+        education = user.education[index];
+        res.render('update_education', { education: education });
+      } else {
+        req.flash('error_message', 'This info does not exist');
+        res.redirect('/about');
+      }
+    })
+    .catch(err => console.log(err));
+});
+
+// PUT - Edit education
+router.put('/edit-education/:id', isAuthorized, (req, res) => {
+  User.findById(req.user._id)
+    .then(user => {
+      const index = user.education.map(item => item.id).indexOf(req.params.id);
+      if (index > -1) {
+        user.education[index].school = req.body.school;
+        user.education[index].degree = req.body.degree;
+        user.education[index].year = req.body.year;
+      }
+
+      user.save().then(user => {
+        req.flash('success_message', 'Updated');
+        res.redirect('/about');
+      });
+    })
+    .catch(err => console.log(err));
+});
+
+// DELETE - Delete education
+router.delete('/delete-education/:id', isAuthorized, (req, res) => {
+  User.findById(req.user._id)
+    .then(user => {
+      const removeIndex = user.education
+        .map(item => item.id)
+        .indexOf(req.params.id);
+      if (removeIndex > -1) {
+        user.education.splice(removeIndex, 1);
+      }
+
+      user.save().then(user => {
+        req.flash('success_message', 'Deleted');
+        res.redirect('/about');
+      });
     })
     .catch(err => console.log(err));
 });
@@ -142,9 +191,60 @@ router.post('/update-workexp', isAuthorized, (req, res) => {
     .catch(err => console.log(err));
 });
 
-/*
-    TO DO:
-            * Add and Delete Education by id
-            * Add and Delete Work EXP by id
- */
+// GET - Get workexp by id
+router.get('/edit-workexp/:id', isAuthorized, (req, res) => {
+  User.findById(req.user.id)
+    .then(user => {
+      const index = user.workexp.map(item => item.id).indexOf(req.params.id);
+      if (index > -1) {
+        res.render('update_workexp', { workexp: user.workexp[index] });
+      } else {
+        req.flash('error_message', 'This info does not exist');
+        res.redirect('/about');
+      }
+    })
+    .catch(err => console.log(err));
+});
+
+// GET - Get workexp by id
+router.put('/edit-workexp/:id', isAuthorized, (req, res) => {
+  User.findById(req.user.id)
+    .then(user => {
+      const index = user.workexp.map(item => item.id).indexOf(req.params.id);
+      if (index > -1) {
+        user.workexp[index].company = req.body.company;
+        user.workexp[index].title = req.body.title;
+        user.workexp[index].year = req.body.year;
+
+        user.save().then(user => {
+          req.flash('success_message', 'Updated');
+          res.redirect('/about');
+        });
+      } else {
+        req.flash('error_message', 'This info does not exist');
+        res.redirect('/about');
+      }
+    })
+    .catch(err => console.log(err));
+});
+
+// DELETE - Delete workexp
+router.delete('/delete-workexp/:id', isAuthorized, (req, res) => {
+  User.findById(req.user._id)
+    .then(user => {
+      const removeIndex = user.workexp
+        .map(item => item.id)
+        .indexOf(req.params.id);
+      if (removeIndex > -1) {
+        user.workexp.splice(removeIndex, 1);
+      }
+
+      user.save().then(user => {
+        req.flash('success_message', 'Deleted');
+        res.redirect('/about');
+      });
+    })
+    .catch(err => console.log(err));
+});
+
 module.exports = router;
