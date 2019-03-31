@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const uuid4 = require('uuid/v4');
+const multer = require('multer');
+const path = require('path');
 
 const User = require('../models/User');
 const { isAuthorized } = require('../helpers/authHelpers');
-
+const { checkFileType } = require('../helpers/fileUpload');
 /*
  * Update Profile page
  * /user/update-profile
@@ -242,6 +245,54 @@ router.delete('/delete-workexp/:id', isAuthorized, (req, res) => {
       user.save().then(user => {
         req.flash('success_message', 'Deleted');
         res.redirect('/about');
+      });
+    })
+    .catch(err => console.log(err));
+});
+
+/*
+ * Upload avatar pictures
+ * Setup storage and file validations
+ */
+// SET STORAGE ENGINE
+const storage = multer.diskStorage({
+  destination: './public/images/avatars',
+  filename: (req, file, callback) => {
+    callback(null, uuid4() + path.extname(file.originalname));
+  }
+});
+
+const upload = multer({
+  storage: storage,
+
+  limits: { fileSize: 1000000 }, //1Mb
+  fileFilter: (req, file, done) => {
+    checkFileType(file, done);
+  }
+}).single('avatar');
+
+// GET - Upload picture
+router.get('/upload-avatar', isAuthorized, (req, res) => {
+  User.findById({ _id: req.user.id }).then(user => {
+    res.render('upload_picture', { user: user });
+  });
+});
+
+// POST - Upload avatar
+router.post('/upload-avatar', isAuthorized, (req, res) => {
+  User.findById({ _id: req.user.id })
+    .then(user => {
+      upload(req, res, err => {
+        if (err) {
+          req.flash('error_message', err.message);
+          res.redirect('/');
+        } else {
+          user.avatar = `avatars/${req.file.filename}`;
+          user.save().then(user => {
+            req.flash('success_message', 'Image updated');
+            res.redirect('/');
+          });
+        }
       });
     })
     .catch(err => console.log(err));
