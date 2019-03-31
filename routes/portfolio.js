@@ -1,7 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+const path = require('path');
+const uuid4 = require('uuid/v4');
 
 const { isAuthorized } = require('../helpers/authHelpers');
+const { checkFileType } = require('../helpers/fileUpload');
 // Import Portfolio model
 const Portfolio = require('../models/Portfolio');
 
@@ -27,7 +31,6 @@ router.get('/', (req, res) => {
         if (!portfolio[0]) {
           res.render('portfolio');
         } else {
-          console.log(res.locals.current_user);
           res.render('portfolio', {
             portfolio: portfolio
           });
@@ -159,4 +162,45 @@ router.get('/:handle', (req, res) => {
     .catch(err => console.log(err));
 });
 
+// SET STORAGE ENGINE
+const storage = multer.diskStorage({
+  destination: './public/images/uploads',
+  filename: (req, file, callback) => {
+    callback(null, uuid4() + path.extname(file.originalname));
+  }
+});
+
+const upload = multer({
+  storage: storage,
+
+  limits: { fileSize: 1000000 }, //1Mb
+  fileFilter: (req, file, done) => {
+    checkFileType(file, done);
+  }
+}).single('image');
+
+// GET - Upload picture
+router.get('/upload-picture/:id', isAuthorized, (req, res) => {
+  Portfolio.findOne({ _id: req.params.id }).then(project => {
+    res.render('upload_picture', { project: project });
+  });
+});
+
+// POST - Upload picture
+router.post('/upload-picture/:id', isAuthorized, (req, res) => {
+  Portfolio.findOne({ _id: req.params.id }).then(project => {
+    upload(req, res, err => {
+      if (err) {
+        req.flash('error_message', err.message);
+        res.redirect('/portfolio');
+      } else {
+        project.image = `uploads/${req.file.filename}`;
+        project.save().then(project => {
+          req.flash('success_message', 'Image updated');
+          res.redirect('/portfolio');
+        });
+      }
+    });
+  });
+});
 module.exports = router;
