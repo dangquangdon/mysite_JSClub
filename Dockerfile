@@ -1,6 +1,6 @@
 FROM node:latest
 WORKDIR /mysite_app
-COPY package.json ./mysite_app
+COPY package*.json ./
 RUN npm install
-COPY . /mysite_app
+COPY . .
 CMD ["npm","start"]

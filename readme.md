@@ -35,16 +35,17 @@ In localhost, the server is started in port 5000
 - `docker build -t mysite2019`
   you can replace `mysite2019` with your preferred name
 
-- `docker run -it -p 8000:5000 mysite2019`
+- `docker run -it -p 8000:5000 mysite2019 .`
   this will run the container in your port 8000 (you can change this), the app runs in the container from the port 5000
 
 **To run in the background**
 
 -`docker run -d -p 8000:5000 mysite2019`
 
-TODO:
+### Using Docker Compose
 
-- Add docker compose
+- `docker-compose up`
+  this will run the container in your port 8000 (you can change this), the app runs in the container from the port 5000
 
 ## How it works
 
